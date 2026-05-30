@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Space_Grotesk } from "next/font/google"
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,22 +13,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const spaceGrotesk = Space_Grotesk({ 
+  subsets: ["latin"],
+  variable: "--font-space-grotesk", 
+})
+
 export const metadata: Metadata = {
-  title: "Mário Pina - Full-stack Developer",
+  title: "Mário Pina | Developer",
   description: "O meu portfólio",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className="dark">
+      <body className={`${spaceGrotesk.className} antialiased bg-background text-foreground`}>
+        {children}
+      </body>
     </html>
-  );
+  )
 }
