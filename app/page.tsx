@@ -41,6 +41,51 @@ export default function Home() {
     })
   }
 
+  const timeLineData = [
+  {
+    title: "Computer Engineering",
+    organization: "Polytechnic of Leiria",
+    date: "2026 - Current",
+    description: "Currently pursuing a degree to deepen my knowledge in software architecture, advanced algorithms, and systems engineering.",
+    type: "Education"
+  },
+  {
+    title: "Full-Stack Developer (Trainee)",
+    organization: "Awatic",
+    date: "Feb 2026 - Jun 2026",
+    description: "Developed and maintained full-stack web applications, working actively with Next.js and NestJS to build scalable solutions.",
+    type: "Work Experience"
+  },
+  {
+    title: "Computer Programming",
+    organization: "Polytechnic of Leiria",
+    date: "2024 - 2026",
+    description: "Intensive technical course focused on software fundamentals, web development, and object-oriented programming (C#, Java, PHP, HTML/CSS).",
+    type: "Education"
+  },
+  {
+    title: "Injection Mold Designer",
+    organization: "Imoplastic",
+    date: "2013 - Current",
+    description: "Designed 3D molds and 2D components using Creo Parametric. Managed technical documentation and optimized workflows by creating custom automation scripts.",
+    type: "Work Experience"
+  },
+  {
+    title: "Technical Course in Mold Designing",
+    organization: "Polytechnic of Leiria",
+    date: "2011 - 2013",
+    description: "Gained strong logical problem-solving skills and spatial awareness through complex CAD software design.",
+    type: "Education"
+  },
+  {
+    title: "Vocational Course in Metal Working",
+    organization: "Escola Secundária Engº Calazans Duarte",
+    date: "2009 - 2011",
+    description: "Learned to design, program, and machine mechanical parts, developing a strong sense of precision and attention to detail.",
+    type: "Education"
+  }
+]
+
 
   return (
     <main className="min-h-screen bg-linear-to-b from-background via-background to-muted/20 text-foreground">
@@ -139,6 +184,28 @@ export default function Home() {
             optimization and clean architecture. Currently looking for an
             Junior opportunity.
           </p>
+          <div className="relative mt-12 space-y-8">
+            <div className="absolute w-px h-full bg-border left-6 md:left-1/2 md:-translate-x-1/2"/>
+            {timeLineData.map((item, index) => {const isEven = index % 2 === 0 
+              return (
+                <div key={index} className="relative flex w-full mb-10">
+                  <div className="absolute w-4 h-4 rounded-full bg-foreground left-6 md:left-1/2 md:-translate-x-1/2 mt-1.5 z-10" />
+                  <div className={`w-full pl-14 md:w-1/2 ${
+                    isEven ? "md:pl-0 md:pr-10" : "md:pl-10 md:ml-auto"
+                  }`}>
+                    <Card className="p-6 transition-colors hover:bg-muted/50 border-neutral-200 dark:border-neutral-800 text-left">
+                      <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2"> {item.type}</div>
+                      <Badge variant="secondary" className="w-fit">{item.date}</Badge>
+                      <h3 className="font-semibold text-lg">{item.title}</h3>
+                      <div className="text-sm font-medium mb-3">{item.organization}</div>
+                      <p className="text-sm text-muted-foreground">{item.description}</p>
+                    </Card>
+                  </div>
+                </div>    
+              )
+            })}
+
+          </div>
         </section>
 
         {/* CONTACT */}
