@@ -16,6 +16,7 @@ import { useState, useEffect } from "react";
 import MoldAppDialog from "@/components/modals/moldAppModal"
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { ArrowUp } from "lucide-react"
+import { motion } from "framer-motion"
 
 export default function Home() {
   const [openMoldApp, setOpenMoldApp] = useState(false);
@@ -186,24 +187,51 @@ export default function Home() {
           </p>
           <div className="relative mt-12 space-y-8">
             <div className="absolute w-px h-full bg-border left-6 md:left-1/2 md:-translate-x-1/2"/>
-            {timeLineData.map((item, index) => {const isEven = index % 2 === 0 
-              return (
-                <div key={index} className="relative flex w-full mb-10">
-                  <div className="absolute w-4 h-4 rounded-full bg-foreground left-6 md:left-1/2 md:-translate-x-1/2 mt-1.5 z-10" />
-                  <div className={`w-full pl-14 md:w-1/2 ${
+            {timeLineData.map((item, index) => {
+            const isEven = index % 2 === 0
+
+            return (
+              <div key={index} className="relative flex w-full mb-10">
+                
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="absolute w-4 h-4 rounded-full bg-foreground left-6 md:left-1/2 md:-translate-x-1/2 mt-1.5 z-10" 
+                />
+                <motion.div 
+
+                  initial={{ opacity: 0, y: 50 }}
+                  
+
+                  whileInView={{ opacity: 1, y: 0 }}
+                  
+
+                  viewport={{ once: true, margin: "-50px" }}
+                  
+                  transition={{ duration: 0.5 }}
+
+                  className={`w-full pl-14 md:w-1/2 ${
                     isEven ? "md:pl-0 md:pr-10" : "md:pl-10 md:ml-auto"
-                  }`}>
-                    <Card className="p-6 transition-colors hover:bg-muted/50 border-neutral-200 dark:border-neutral-800 text-left">
-                      <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2"> {item.type}</div>
-                      <Badge variant="secondary" className="w-fit">{item.date}</Badge>
+                  }`}
+                >
+                  <Card className="p-6 transition-colors hover:bg-muted/50 border-neutral-200 dark:border-neutral-800 text-left">
+                    <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-2">
+                      {item.type}
+                    </div>
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
                       <h3 className="font-semibold text-lg">{item.title}</h3>
-                      <div className="text-sm font-medium mb-3">{item.organization}</div>
-                      <p className="text-sm text-muted-foreground">{item.description}</p>
-                    </Card>
-                  </div>
-                </div>    
-              )
-            })}
+                      <Badge variant="secondary" className="w-fit">{item.date}</Badge>
+                    </div>
+                    <div className="text-sm font-medium mb-3">{item.organization}</div>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </Card>
+                </motion.div>
+
+              </div>
+            )
+          })}
 
           </div>
         </section>
