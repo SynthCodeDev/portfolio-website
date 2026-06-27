@@ -85,8 +85,40 @@ export default function Home() {
     description: "Learned to design, program, and machine mechanical parts, developing a strong sense of precision and attention to detail.",
     type: "Education"
   }
+  ]
+  
+  const projectsData = [
+  {
+    title: "iTasks",
+    description: "Kanban-style task tracking for development managers and teams.",
+    type: "Academic Project",
+    tech: ["C#", ".NET", "Entity Framework"]
+  },
+  {
+    title: "ChatTS",
+    description: "Real-time chat application focused on security and encryption.",
+    type: "Academic Project",
+    tech: ["C#", "ASP.NET Core"]
+  },
+  {
+    title: "PetPanion",
+    description: "A web application that helps to find homes for pets and connect shelters with adopters.",
+    type: "Academic Project",
+    tech: ["PHP", "Bootstrap", "MySQL"]
+  },
+  {
+    title: "Mold App",
+    description: "A desktop application to help designers of injection molds.",
+    type: "Personal Project",
+    tech: ["C#", ".NET"]
+  },
+  {
+    title: "Portfolio Website",
+    description: "A personal portfolio website to showcase my skills and projects.",
+    type: "Personal Project",
+    tech: ["Next.js", "Tailwind", "Framer Motion"]
+  }
 ]
-
 
   return (
     <main className="min-h-screen bg-linear-to-b from-background via-background to-muted/20 text-foreground">
@@ -130,42 +162,40 @@ export default function Home() {
         </section>
 
         {/* PROJECTS */}
-        <section className="py-20 space-y-6" id="projects">
+        <section className="py-20 space-y-8" id="projects">
           <h2 className="text-2xl font-semibold">Projects</h2>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projectsData.map((project, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="h-full"
+              >
+                <Card className="h-full flex flex-col p-6 cursor-pointer border-neutral-200 dark:border-neutral-800 transition-all duration-300 hover:-translate-y-1 hover:border-neutral-400 dark:hover:border-neutral-600 hover:shadow-md bg-card text-left relative overflow-hidden group">
+                  
+                  <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground mb-3">
+                    {project.type}
+                  </div>
 
-            <Card
-              className="p-6 hover:scale-[1.02] transition-transform cursor-pointer"
-              onClick={() => setOpenMoldApp(true)}
-            >
-              <h3 className="font-semibold text-lg">Mold App</h3>
-
-              <p className="text-sm text-muted-foreground mt-2">
-                Web app for engineers and designers of injection molds that helps
-                them tracking and managing their projects.
-              </p>
-
-              <div className="flex gap-2 mt-4">
-                <Badge>Next.js</Badge>
-                <Badge>Nest.js</Badge>
-                <Badge>Tailwind</Badge>
-              </div>
-            </Card>
-
-            <Card className="p-6 hover:scale-[1.02] transition-transform cursor-pointer">
-              <h3 className="font-semibold text-lg">Task Manager</h3>
-
-              <p className="text-sm text-muted-foreground mt-2">
-                Full-stack app with authentication and database.
-              </p>
-
-              <div className="flex gap-2 mt-4">
-                <Badge>React</Badge>
-                <Badge>Node</Badge>
-              </div>
-            </Card>
-
+                  <h3 className="font-semibold text-xl">{project.title}</h3>
+                  
+                  <p className="text-sm text-muted-foreground mt-3 line-clamp-2">
+                    {project.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mt-auto pt-6">
+                    {project.tech.map((techItem, i) => (
+                      <Badge key={i} variant="outline">{techItem}</Badge>
+                    ))}
+                  </div>
+                  
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </section>
 
@@ -237,12 +267,12 @@ export default function Home() {
         </section>
 
         {/* CONTACT */}
-<section className="py-20 text-center space-y-4" id="contact">
-  <h2 className="text-2xl font-semibold">Let’s work together</h2>
+        <section className="py-20 text-center space-y-4" id="contact">
+          <h2 className="text-2xl font-semibold">Let’s work together</h2>
 
-  <p className="text-muted-foreground">
-    Open to junior positions.
-  </p>
+          <p className="text-muted-foreground">
+            Open to junior positions.
+          </p>
 
           {/* DIV CONTAINER DOS BOTÕES */}
           <div className="flex flex-wrap justify-center gap-4 pt-4">
